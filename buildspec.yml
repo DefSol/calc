@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - echo "No specific installation steps required for this simple test."
+  build:
+    commands:
+      - echo "Starting build phase on `date`"
+      - cd codebuild
+      - echo "Running Node.js tests..."
+      - node sum.test.js
+      - echo "Tests completed. HTML report should be in codebuild/test-results.html"
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+
+artifacts:
+  files:
+    - codebuild/test-results.html
+  name: TestReportArtifacts-${CODEBUILD_BUILD_ID}
+  discard-paths: yes
