@@ -9,7 +9,6 @@ phases:
   build:
     commands:
       - echo "Starting build phase on `date`"
-      - cd codebuild
       - echo "Running Node.js tests..."
       - node sum.test.js
       - echo "Tests completed. HTML report should be in codebuild/test-results.html"
